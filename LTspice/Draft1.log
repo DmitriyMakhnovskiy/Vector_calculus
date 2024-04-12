@@ -1,0 +1,21 @@
+Circuit: * E:\Dropbox\Dima\Teaching courses and tutorials\Plymouth City College\1078\Coursework\Complex_signal\LTspice\Draft1.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Fri Apr 12 18:46:23 2024
+Total elapsed time: 0.096 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2085
+traniter = 2082
+tranpoints = 1042
+accept = 1042
+rejected = 0
+matrix size = 4
+fillins = 0
+solver = Normal
+Matrix Compiler1: 64 bytes object code size  0.1/0.0/[0.0]
+Matrix Compiler2: 214 bytes object code size  0.1/0.1/[0.0]
+
