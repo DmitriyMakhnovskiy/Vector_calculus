@@ -7,7 +7,6 @@
 
 import math
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Number of decimal places when calculating real values
 accuracy = 3
@@ -40,12 +39,16 @@ def vector_difference(u1, u2):
     angle_deg = round(angle * 180.0 / math.pi, accuracy)
     return (x, y), magnitude, angle_rad, angle_deg
 
+
 def draw_vector_with_arguments(vector, magnitude, angle_degrees, title='', color='blue'):
     x, y = vector
+
+    # Set the axis limits to be proportional to the magnitude of the vector
+    max_limit = magnitude * 1.1  # Adding some padding
     plt.figure()
     ax = plt.gca()
-    ax.set_xlim([-10, 10])
-    ax.set_ylim([-10, 10])
+    ax.set_xlim([-max_limit, max_limit])
+    ax.set_ylim([-max_limit, max_limit])
     ax.set_aspect('equal')
     ax.axhline(0, color='black', linewidth=0.5, zorder=0)
     ax.axvline(0, color='black', linewidth=0.5, zorder=0)
