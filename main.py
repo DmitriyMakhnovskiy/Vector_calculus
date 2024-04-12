@@ -40,7 +40,6 @@ def vector_difference(u1, u2):
     angle_deg = round(angle * 180.0 / math.pi, accuracy)
     return (x, y), magnitude, angle_rad, angle_deg
 
-
 def draw_vector_with_arguments(vector, magnitude, angle_degrees, title='', color='blue'):
     x, y = vector
     plt.figure()
