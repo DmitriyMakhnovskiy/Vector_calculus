@@ -6,6 +6,8 @@
 #
 
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Number of decimal places when calculating real values
 accuracy = 3
@@ -38,6 +40,48 @@ def vector_difference(u1, u2):
     angle_deg = round(angle * 180.0 / math.pi, accuracy)
     return (x, y), magnitude, angle_rad, angle_deg
 
+
+def draw_vector_with_arguments(vector, magnitude, angle_degrees, title='', color='blue'):
+    x, y = vector
+    plt.figure()
+    ax = plt.gca()
+    ax.set_xlim([-10, 10])
+    ax.set_ylim([-10, 10])
+    ax.set_aspect('equal')
+    ax.axhline(0, color='black', linewidth=0.5, zorder=0)
+    ax.axvline(0, color='black', linewidth=0.5, zorder=0)
+    plt.grid(True, zorder=0)
+
+    ax.quiver(0, 0, x, y, angles='xy', scale_units='xy', scale=1, color=color, zorder=1)
+
+    table_data = [
+        ["Magnitude", f'{magnitude:.2f}'],
+        ["Angle (°)", f'{angle_degrees:.2f}']
+    ]
+
+    # Determine the position of the table
+    if x >= 0 and y >= 0:
+        table_loc = 'lower right'
+    elif x < 0 and y >= 0:
+        table_loc = 'lower left'
+    elif x < 0 and y < 0:
+        table_loc = 'upper left'
+    else:
+        table_loc = 'upper right'
+
+    table = ax.table(cellText=table_data, loc=table_loc, cellLoc='center', edges='closed', zorder=2)
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.auto_set_column_width([0, 1])
+    for key, cell in table._cells.items():
+        cell.set_facecolor('white')
+        cell.set_alpha(1)
+
+    plt.title(title)
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.show()
+
 print('')
 # u1 + u2
 vector, magnitude, angle_rad, angle_deg = vector_sum(u1, u2)
@@ -45,6 +89,7 @@ print("u1 + u2:", vector)
 print("|u1 + u2|:", magnitude)
 print("arg(u1 + u2):", angle_rad, ' rad')
 print("arg(u1 + u2):", angle_deg, ' deg')
+draw_vector_with_arguments(vector, magnitude, angle_deg, title='u1 + u2', color='blue')
 
 # u1 - u2
 vector, magnitude, angle_rad, angle_deg = vector_difference(u1, u2)
@@ -52,6 +97,7 @@ print("\nu1 - u2:", vector)
 print("|u1 - u2|:", magnitude)
 print("arg(u1 - u2):", angle_rad, ' rad')
 print("arg(u1 - u2):", angle_deg, ' deg')
+draw_vector_with_arguments(vector, magnitude, angle_deg, title='u1 - u2', color='blue')
 
 # u2 - u1
 vector, magnitude, angle_rad, angle_deg = vector_difference(u2, u1)
@@ -59,3 +105,4 @@ print("\nu2 - u1:", vector)
 print("|u2 - u1|:", magnitude)
 print("arg(u2 - u1):", angle_rad, ' rad')
 print("arg(u2 - u1):", angle_deg, ' deg')
+draw_vector_with_arguments(vector, magnitude, angle_deg, title='u2 - u1', color='blue')
